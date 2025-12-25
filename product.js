@@ -42,5 +42,5 @@ app.use('/api',igRoute)
 
 
 app.listen(port,()=>{
-    console.log("Server is Start Running ijn 4000")
+    console.log("Server is Start Running in 4000")
 })
