@@ -2,6 +2,9 @@ const express = require('express')
 // const cors = require('cors')
 // require('dotenv').config();
 const path = require('path');
+const pool = require("./db/db"); 
+// adjust path if db.js location is different
+
 
 const app = express()
 const port = 4000
@@ -29,6 +32,24 @@ app.use(
 app.get("/", (req, res) => {
   res.send("API running 🚀");
 });
+
+
+app.get("/db-test", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.status(200).json({
+      success: true,
+      time: result.rows[0],
+    });
+  } catch (error) {
+    console.error("DB TEST ERROR:", error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
+
 
 
 app.use('/test', igTestPostRoutes);
