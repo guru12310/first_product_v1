@@ -26,6 +26,11 @@ app.use(
   express.static(path.join(process.cwd(), 'tmp_uploads'))
 );
 
+app.get("/", (req, res) => {
+  res.send("API running 🚀");
+});
+
+
 app.use('/test', igTestPostRoutes);
 
 
